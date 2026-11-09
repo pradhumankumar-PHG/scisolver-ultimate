@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SciSolver Ultimate</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#121212;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+h1{
+    color:#00e5ff;
+}
+
+select,input,button{
+    width:80%;
+    padding:12px;
+    margin:8px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    background:#00e5ff;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#00b8d4;
+}
+
+.result{
+    margin-top:20px;
+    background:#222;
+    padding:15px;
+    border-radius:10px;
+    font-size:20px;
+}
+
+footer{
+    position:fixed;
+    bottom:8px;
+    right:12px;
+    font-family:cursive;
+    font-size:14px;
+    color:#bdbdbd;
+    opacity:0.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔬 SciSolver Ultimate</h1>
+
+<select id="formula" onchange="updateLabels()">
+
+<option>Speed</option>
+<option>Distance</option>
+<option>Time</option>
+
+<option>Force</option>
+<option>Mass from Force</option>
+<option>Acceleration</option>
+
+<option>Density</option>
+<option>Volume</option>
+
+<option>Pressure</option>
+<option>Area</option>
+
+<option>Work</option>
+<option>Power</option>
+
+<option>Kinetic Energy</option>
+<option>Potential Energy</option>
+
+<option>Voltage</option>
+<option>Current</option>
+<option>Resistance</option>
+
+<option>Electric Charge</option>
+
+<option>Percentage</option>
+
+</select>
+
+<br>
+
+<input
+type="number"
+id="value1"
+placeholder="Value 1">
+
+<br>
+
+<input
+type="number"
+id="value2"
+placeholder="Value 2">
+
+<br>
+
+<button onclick="calculate()">
+Solve
+</button>
+
+<div class="result" id="result">
+Answer appears here
+</div>
+
+</div>
+
+<footer>
+Made by - Pradhuman, Himanshu
+</footer>
+
+<script>
+
+function updateLabels(){
+
+let formula =
+document.getElementById("formula").value;
+
+let a =
+document.getElementById("value1");
+
+let b =
+document.getElementById("value2");
+
+switch(formula){
+
+case "Speed":
+a.placeholder="Distance";
+b.placeholder="Time";
+break;
+
+case "Distance":
+a.placeholder="Speed";
+b.placeholder="Time";
+break;
+
+case "Time":
+a.placeholder="Distance";
+b.placeholder="Speed";
+break;
+
+case "Force":
+a.placeholder="Mass";
+b.placeholder="Acceleration";
+break;
+
+case "Mass from Force":
+a.placeholder="Force";
+b.placeholder="Acceleration";
+break;
+
+case "Acceleration":
+a.placeholder="Force";
+b.placeholder="Mass";
+break;
+
+case "Density":
+a.placeholder="Mass";
+b.placeholder="Volume";
+break;
+
+case "Volume":
+a.placeholder="Mass";
+b.placeholder="Density";
+break;
+
+case "Pressure":
+a.placeholder="Force";
+b.placeholder="Area";
+break;
+
+case "Area":
+a.placeholder="Force";
+b.placeholder="Pressure";
+break;
+
+case "Work":
+a.placeholder="Force";
+b.placeholder="Distance";
+break;
+
+case "Power":
+a.placeholder="Work";
+b.placeholder="Time";
+break;
+
+case "Kinetic Energy":
+a.placeholder="Mass";
+b.placeholder="Velocity";
+break;
+
+case "Potential Energy":
+a.placeholder="Mass";
+b.placeholder="Height";
+break;
+
+case "Voltage":
+a.placeholder="Current";
+b.placeholder="Resistance";
+break;
+
+case "Current":
+a.placeholder="Voltage";
+b.placeholder="Resistance";
+break;
+
+case "Resistance":
+a.placeholder="Voltage";
+b.placeholder="Current";
+break;
+
+case "Electric Charge":
+a.placeholder="Current";
+b.placeholder="Time";
+break;
+
+case "Percentage":
+a.placeholder="Part";
+b.placeholder="Total";
+break;
+
+}
+
+}
+
+function calculate(){
+
+let formula =
+document.getElementById("formula").value;
+
+let a =
+parseFloat(document.getElementById("value1").value);
+
+let b =
+parseFloat(document.getElementById("value2").value);
+
+let answer = "";
+
+if(isNaN(a) || isNaN(b)){
+document.getElementById("result").innerHTML =
+"Enter valid numbers";
+return;
+}
+
+switch(formula){
+
+case "Speed":
+answer = "Speed = " + (a/b).toFixed(2) + " m/s";
+break;
+
+case "Distance":
+answer = "Distance = " + (a*b).toFixed(2) + " m";
+break;
+
+case "Time":
+answer = "Time = " + (a/b).toFixed(2) + " s";
+break;
+
+case "Force":
+answer = "Force = " + (a*b).toFixed(2) + " N";
+break;
+
+case "Mass from Force":
+answer = "Mass = " + (a/b).toFixed(2) + " kg";
+break;
+
+case "Acceleration":
+answer = "Acceleration = " + (a/b).toFixed(2) + " m/s²";
+break;
+
+case "Density":
+answer = "Density = " + (a/b).toFixed(2) + " kg/m³";
+break;
+
+case "Volume":
+answer = "Volume = " + (a/b).toFixed(2) + " m³";
+break;
+
+case "Pressure":
+answer = "Pressure = " + (a/b).toFixed(2) + " Pa";
+break;
+
+case "Area":
+answer = "Area = " + (a/b).toFixed(2) + " m²";
+break;
+
+case "Work":
+answer = "Work = " + (a*b).toFixed(2) + " J";
+break;
+
+case "Power":
+answer = "Power = " + (a/b).toFixed(2) + " W";
+break;
+
+case "Kinetic Energy":
+answer = "Kinetic Energy = " +
+(0.5*a*b*b).toFixed(2) + " J";
+break;
+
+case "Potential Energy":
+answer = "Potential Energy = " +
+(a*9.8*b).toFixed(2) + " J";
+break;
+
+case "Voltage":
+answer = "Voltage = " + (a*b).toFixed(2) + " V";
+break;
+
+case "Current":
+answer = "Current = " + (a/b).toFixed(2) + " A";
+break;
+
+case "Resistance":
+answer = "Resistance = " + (a/b).toFixed(2) + " Ω";
+break;
+
+case "Electric Charge":
+answer = "Charge = " + (a*b).toFixed(2) + " C";
+break;
+
+case "Percentage":
+answer = "Percentage = " +
+((a/b)*100).toFixed(2) + " %";
+break;
+
+}
+
+document.getElementById("result").innerHTML =
+answer;
+
+}
+
+updateLabels();
+
+</script>
+
+</body>
+</html>
